@@ -27,8 +27,29 @@ export const Auth = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+  }
+
+  const loginHandler = () => {
+    //onsole.log(e);
 
     const url = 'http://localhost:8080/auth/login';
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({email, pass})
+    }
+
+    fetch(url, options)
+      .then(response => response.text())
+      .then(result => {
+        alert(result);
+      });
+  }
+
+  const registerHandler = () => {
+    const url = 'http://localhost:8080/auth/register';
     const options = {
       method: 'POST',
       headers: {
@@ -60,7 +81,10 @@ export const Auth = () => {
         placeholder='Password' 
         value = { pass } 
         onChange = { inputHandler } />
-      <button>Login</button>
+        <div>
+          <button onClick = { loginHandler }>Login</button>
+          <button onClick = { registerHandler }>Register</button>
+        </div>
     </form>
   )
 }
