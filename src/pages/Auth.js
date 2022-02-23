@@ -6,9 +6,10 @@ export const Auth = () => {
 
   console.log('email:', email);
   console.log('pass:', pass);
+  console.log({email, pass});
 
   const inputHandler = (e) => {
-    console.log(e);
+    //console.log(e);
     switch (e.target.name) {
       case 'email':
         setEmail(e.target.value)
@@ -29,7 +30,11 @@ export const Auth = () => {
 
     const url = 'http://localhost:8080/auth/login';
     const options = {
-      method: 'POST'
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({email, pass})
     }
 
     fetch(url, options)
