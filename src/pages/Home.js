@@ -38,7 +38,10 @@ export const Home = () => {
     useEffect(() => {
 
     fetch('http://localhost:8080/api/iphone', {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+            test: localStorage.getItem('token')
+        }
     })
         .then(response => response.json())
         .then(result => {
