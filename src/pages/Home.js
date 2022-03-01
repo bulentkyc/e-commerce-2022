@@ -40,7 +40,7 @@ export const Home = () => {
     fetch('http://localhost:8080/api/iphone', {
         method: 'GET',
         headers: {
-            test: localStorage.getItem('token')
+            'x-auth-token': localStorage.getItem('token')
         }
     })
         .then(response => response.json())
