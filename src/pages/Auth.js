@@ -44,7 +44,7 @@ export const Auth = () => {
     fetch(url, options)
       .then(response => response.text())
       .then(result => {
-        localStorage.setItem('token', result)
+        localStorage.setItem('token', result);
         alert(result);
       });
   }
