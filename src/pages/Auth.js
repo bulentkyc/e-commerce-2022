@@ -1,8 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const Auth = (props) => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      navigate('/profile');
+    } 
+  }, [])
+  
+
+
   const [email, setEmail] = useState();
   const [pass, setPass] = useState();
+
 
   console.log('email:', email);
   console.log('pass:', pass);
@@ -43,12 +55,16 @@ export const Auth = (props) => {
 
     //TODO: Adapt to the object with the status and msg.
     fetch(url, options)
-      .then(response => response.text())
+      .then(response => response.json())
       .then(result => {
-        localStorage.setItem('token', result);
-        localStorage.setItem('email', email);
-        props.setEmail(email);
-        alert(result);
+        if (result.token != undefined) {
+          localStorage.setItem('token', result.token);
+          localStorage.setItem('email', email);
+          props.setEmail(email);
+          navigate('/home');
+        }
+        alert(result.msg);
+        //alert(result);
       });
   }
 

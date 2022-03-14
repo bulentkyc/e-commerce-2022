@@ -17,6 +17,7 @@ function App() {
       <Navbar email = {email} setEmail = {setEmail}/>
       <Routes>
         <Route path='/home' element = {<Home />} />
+        {/* <Route path='/login' element = {email == ''?<Auth setEmail = {setEmail} />:<Profile />} /> */}
         <Route path='/login' element = {<Auth setEmail = {setEmail} />} />
         <Route path='/profile' element = {<Profile />} />
       </Routes>

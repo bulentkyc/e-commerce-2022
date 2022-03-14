@@ -19,6 +19,8 @@ ul.navbar > li > *, .navbar > section *:not(li:first-child) {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    background-color: unset;
+    border: unset;
 }
 
 .active {
