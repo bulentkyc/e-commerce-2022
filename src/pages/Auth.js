@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export const Auth = () => {
+export const Auth = (props) => {
   const [email, setEmail] = useState();
   const [pass, setPass] = useState();
 
@@ -41,10 +41,13 @@ export const Auth = () => {
       body: JSON.stringify({email, pass})
     }
 
+    //TODO: Adapt to the object with the status and msg.
     fetch(url, options)
       .then(response => response.text())
       .then(result => {
         localStorage.setItem('token', result);
+        localStorage.setItem('email', email);
+        props.setEmail(email);
         alert(result);
       });
   }

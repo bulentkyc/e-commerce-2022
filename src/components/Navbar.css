@@ -13,7 +13,7 @@ ul.navbar > li {
     float: left;
 }
 
-ul.navbar > li > * {
+ul.navbar > li > *, .navbar > section *:not(li:first-child) {
     display: block;
     color: white;
     text-align: center;
@@ -21,10 +21,16 @@ ul.navbar > li > * {
     text-decoration: none;
 }
 
-ul.navbar > li > *:hover:not(.active) {
+.active {
+    background-color: #04AA6D;
+}
+
+ul.navbar > li > *:hover:not(.active), .navbar >  section > *:hover:not(.active) {
     background-color: #111;
 }
 
-.active {
-    background-color: #04AA6D;
+.navbar > section {
+    display: flex;
+    justify-content: flex-end;
+    color: white;
 }
