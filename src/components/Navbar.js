@@ -24,7 +24,6 @@ export const Navbar = (props) => {
             <section>
                 <li>
                     {localStorage.getItem('token')?logoutBtn:loginBtn}
-                    
                 </li>
                 <li>
                     {props.email}
