@@ -53,7 +53,7 @@ export const Auth = (props) => {
       body: JSON.stringify({email, pass})
     }
 
-    //TODO: Adapt to the object with the status and msg.
+    //TODO: Adapt to the object with the status and msg. + token
     fetch(url, options)
       .then(response => response.json())
       .then(result => {
@@ -62,8 +62,9 @@ export const Auth = (props) => {
           localStorage.setItem('email', email);
           props.setEmail(email);
           navigate('/home');
+        } else {
+          alert(result.msg);
         }
-        alert(result.msg);
         //alert(result);
       });
   }

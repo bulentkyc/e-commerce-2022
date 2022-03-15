@@ -8,6 +8,7 @@ export const Navbar = (props) => {
         localStorage.removeItem('token');
         localStorage.removeItem('email');
         props.setEmail('');
+        window.location.reload();
     }
 
     const loginBtn = <Link to={"/login"}>Login</Link>;

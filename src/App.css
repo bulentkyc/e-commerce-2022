@@ -38,3 +38,8 @@ form {
   display: flex;
   flex-direction: column;
 }
+
+p {
+  width: 100vw;
+  text-align: center;
+}

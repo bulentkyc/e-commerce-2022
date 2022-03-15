@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom';
 
 export const Home = () => {
    //TODO: Fetch the real data from api endpoint instead the dummy below. 
@@ -35,22 +36,27 @@ export const Home = () => {
     const [iphones, setIphones] = useState([]);
     //let iphones = ['test'];
 
+    const [loginMsg, setLoginMsg] = useState('');
+
     useEffect(() => {
-
-    fetch('http://localhost:8080/api/iphone', {
-        method: 'GET',
-        headers: {
-            'x-auth-token': localStorage.getItem('token')
+        console.log(localStorage.getItem('token'));
+        if (!localStorage.getItem('token')) {
+            setLoginMsg(<p>You should <Link to={'/login'} >login</Link> to see our products!</p>);
+        } else {
+            fetch('http://localhost:8080/api/iphone', {
+                method: 'GET',
+                headers: {
+                    'x-auth-token': localStorage.getItem('token')
+                }
+            })
+                .then(response => response.json())
+                .then(result => {
+                console.log(result);
+                setIphones(result);
+                console.log('iphones: ', iphones);
+            });
         }
-    })
-        .then(response => response.json())
-        .then(result => {
-        console.log(result);
-        setIphones(result);
-        console.log('iphones: ', iphones);
-    });
-
-    }, [])
+    }, []);
 
 
     const prodCards = iphones.map( (item, index) => 
@@ -71,6 +77,7 @@ export const Home = () => {
     return (
         <div className="App">
         {prodCards}
+        {loginMsg}
         </div>
     );
 }

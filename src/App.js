@@ -11,12 +11,11 @@ function App() {
 
   const [email, setEmail] = useState(localStorage.getItem('email'));
   
-
   return (
     <div className="App">
       <Navbar email = {email} setEmail = {setEmail}/>
       <Routes>
-        <Route path='/home' element = {<Home />} />
+        <Route path='/home' element = {<Home setEmail = {setEmail} />} />
         {/* <Route path='/login' element = {email == ''?<Auth setEmail = {setEmail} />:<Profile />} /> */}
         <Route path='/login' element = {<Auth setEmail = {setEmail} />} />
         <Route path='/profile' element = {<Profile />} />
