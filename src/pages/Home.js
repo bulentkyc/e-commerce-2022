@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 
-export const Home = () => {
+export const Home = (props) => {
    //TODO: Fetch the real data from api endpoint instead the dummy below. 
     /* 
     const iphones = [
@@ -58,13 +58,19 @@ export const Home = () => {
         }
     }, []);
 
+    const addToCart = (item) => {
+        console.log(item);
+        const cart = [...props.cart, item];
+        //cart.push(item);
+        props.setCart(cart);
+    }
 
     const prodCards = iphones.map( (item, index) => 
     <div className='prodCard' key={index}>
     <h3>{item.model}</h3>
     <img src={item.imgURL} />
     <p>{item.price}</p>
-    <button>Add to Cart</button>
+    <button onClick={() => addToCart(item)}>Add to Cart</button>
     </div>
     );
 

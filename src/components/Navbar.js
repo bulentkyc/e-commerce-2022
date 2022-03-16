@@ -19,10 +19,15 @@ export const Navbar = (props) => {
             <li>
                 <Link to={"/home"}>Home</Link>
             </li>
+            {localStorage.getItem('token')?
             <li>
                 <Link to={"/profile"}>Profile</Link>
             </li>
+            :''}
             <section>
+                <li className='active'>
+                    <Link to={"/cart"}>🛒 {props.cartCounter} </Link>
+                </li>
                 <li>
                     {localStorage.getItem('token')?logoutBtn:loginBtn}
                 </li>

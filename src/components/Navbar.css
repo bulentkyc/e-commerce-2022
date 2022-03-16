@@ -13,18 +13,17 @@ ul.navbar > li {
     float: left;
 }
 
-ul.navbar > li > *, .navbar > section *:not(li:first-child) {
+ul.navbar > li > *, .navbar > section *:not(li:nth-of-type(2)) {
     display: block;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    background-color: unset;
-    border: unset;
 }
 
-.active {
-    background-color: #04AA6D;
+.navbar button {
+    background-color: unset;
+    border: unset;
 }
 
 ul.navbar > li > *:hover:not(.active), .navbar >  section > *:hover:not(.active) {
@@ -35,4 +34,8 @@ ul.navbar > li > *:hover:not(.active), .navbar >  section > *:hover:not(.active)
     display: flex;
     justify-content: flex-end;
     color: white;
+}
+
+.active{
+    background-color: #04AA6D;
 }
