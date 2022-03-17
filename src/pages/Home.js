@@ -41,7 +41,7 @@ export const Home = (props) => {
     useEffect(() => {
         console.log(localStorage.getItem('token'));
         if (!localStorage.getItem('token')) {
-            setLoginMsg(<p>You should <Link to={'/login'} >login</Link> to see our products!</p>);
+            setLoginMsg(<p className='fullScreenText'>You should <Link to={'/login'} >login</Link> to see our products!</p>);
         } else {
             fetch('http://localhost:8080/api/iphone', {
                 method: 'GET',
@@ -59,9 +59,18 @@ export const Home = (props) => {
     }, []);
 
     const addToCart = (item) => {
-        console.log(item);
-        const cart = [...props.cart, item];
-        //cart.push(item);
+        const cart = [...props.cart];
+        //console.log(item);
+        const foundItem = cart.find(product => item.model == product.model);
+
+        if (foundItem) {
+            foundItem.count += 1;
+        } else {
+            item.count = 1;
+            cart.push(item);
+        }
+        
+        //console.log(cart);
         props.setCart(cart);
     }
 

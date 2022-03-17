@@ -1,0 +1,32 @@
+.HCard {
+    margin: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    width: 80vw;
+    height: 75px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    gap: 15px;
+}
+
+.HCard h1 {
+    font-size: 20px;   
+}
+
+.HCard p {
+    text-align: left;    
+}
+
+.HCard img {
+    width: 75px;
+    height: 100%;
+    object-fit: cover;
+}
+
+.counter {
+    flex-grow: 1;
+    text-align: right;
+}

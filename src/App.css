@@ -39,7 +39,11 @@ form {
   flex-direction: column;
 }
 
-p {
+p.fullScreenText {
   width: 100vw;
   text-align: center;
+}
+
+.cart {
+  width: 100vw;
 }

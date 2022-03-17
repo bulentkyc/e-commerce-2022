@@ -12,7 +12,7 @@ const Profile = () => {
 
     useEffect(() => {
         if (!localStorage.getItem('token')) {
-            setLoginMsg(<p>You should <Link to={'/login'} >login</Link> to see your profile!</p>);
+            setLoginMsg(<p className='fullScreenText'>You should <Link to={'/login'} >login</Link> to see your profile!</p>);
         } else {
             fetch('http://localhost:8080/profile/get', {
                 method: 'GET',
