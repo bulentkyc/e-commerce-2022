@@ -32,7 +32,7 @@ export const Navbar = (props) => {
                     {localStorage.getItem('token')?logoutBtn:loginBtn}
                 </li>
                 <li>
-                    {props.email}
+                    <span>{props.email}</span>
                 </li>
             </section>
         </ul>

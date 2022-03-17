@@ -13,7 +13,7 @@ ul.navbar > li {
     float: left;
 }
 
-ul.navbar > li > *, .navbar > section *:not(li:nth-of-type(2)) {
+ul.navbar li > * {
     display: block;
     color: white;
     text-align: center;
