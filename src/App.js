@@ -4,17 +4,22 @@ import {Home} from './pages/Home';
 import {Navbar} from './components/Navbar';
 import { Routes, Route} from 'react-router-dom';
 import Profile from './pages/Profile';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import Cart from './pages/Cart';
 
+let counter = 0
 
 function App() {
 
   const [email, setEmail] = useState(localStorage.getItem('email'));
   const [cart, setCart] = useState([]);
+  const [isDone, setIsDone] = useState(false);
+
+  let isTheFirstRun = false;
 
   //read from the local storage
   useEffect(() => {
+    isTheFirstRun = true;
     /*
     TODO:
     1. Check if user loggedin?
@@ -36,6 +41,7 @@ function App() {
                   if (result.status === 'success') {
                     localStorage.setItem('cart', JSON.stringify(result.data));
                     setCart( result.data );
+                    setIsDone(true);
                   } else {
                     alert(result.msg);
                   }
@@ -43,37 +49,49 @@ function App() {
         );
     }
 
-
     /* if (JSON.parse(localStorage.getItem('cart'))) {
       setCart(JSON.parse(localStorage.getItem('cart')));
     } */
+    /* alert('Mounted') */
 
   }, []);
+
+  useEffect(() => {
+    counter++;
+    console.log(counter);
+  console.log('isTheFirstRun', isTheFirstRun)
+  console.log('isDone',isDone)
+    /* alert('Updated') */
+  })
   
   //Write to the local storage
   useEffect(() => {
-    //TODO: Solve problem with the empty state
-    if (cart.length !== 0) {
-      localStorage.setItem('cart', JSON.stringify(cart));
-      
-      const url = 'http://localhost:8080/cart/save';
-      const options = {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-              'x-auth-token': localStorage.getItem('token')
-          },
-          body: JSON.stringify({basket: cart})
-      }
+    
+    if (!isTheFirstRun && isDone) {
+      /* alert('Cart') */
+      //TODO: Solve problem with the empty state
 
-      fetch(url, options)
-          .then(response => response.text())
-          .then(result => {
-          alert(result);
-          });
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        const url = 'http://localhost:8080/cart/save';
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-auth-token': localStorage.getItem('token')
+            },
+            body: JSON.stringify({basket: cart})
+        }
+
+        fetch(url, options)
+            .then(response => response.text())
+            .then(result => {
+            //alert(result);
+            });
     }
-      
   }, [cart]);
+
+
 
 
 
@@ -89,7 +107,7 @@ function App() {
         {/* <Route path='/login' element = {email == ''?<Auth setEmail = {setEmail} />:<Profile />} /> */}
         <Route path='/login' element = {<Auth setEmail = {setEmail} />} />
         <Route path='/profile' element = {<Profile />} />
-        <Route path='/cart' element = {<Cart cart = {cart} />} />
+        <Route path='/cart' element = {<Cart cart = {cart} setCart = {setCart} />} />
       </Routes>
     </div>
   );

@@ -1,7 +1,8 @@
 import React from 'react';
+import CountController from './CountController';
 import './HCard.css'
 
-function HCard({item}) {
+function HCard({item, cart, setCart}) {
     return (
         <div className='HCard'>
             <img src = {item.imgURL} />
@@ -10,7 +11,7 @@ function HCard({item}) {
                 <p>{item.price}</p>
             </section>
             <section className='counter'>
-                Counter: {item.count}
+                <CountController item = {item} cart = {cart} setCart = {setCart} />
             </section>
         </div>
     )
