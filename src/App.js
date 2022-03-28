@@ -103,6 +103,7 @@ function App() {
     <div className="App">
       <Navbar email = {email} setEmail = {setEmail} cartCounter = {totalCount} />
       <Routes>
+        <Route path='/' element = {<Home setEmail = {setEmail} cart = {cart} setCart = {setCart} />} />
         <Route path='/home' element = {<Home setEmail = {setEmail} cart = {cart} setCart = {setCart} />} />
         {/* <Route path='/login' element = {email == ''?<Auth setEmail = {setEmail} />:<Profile />} /> */}
         <Route path='/login' element = {<Auth setEmail = {setEmail} />} />

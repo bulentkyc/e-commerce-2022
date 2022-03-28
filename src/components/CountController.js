@@ -20,13 +20,14 @@ function CountController({item, cart, setCart}) {
         foundItem.count++;
         setCart(copyCart);
     }
-  return (
-    <div>
-        <button onClick={decrease} >-</button>
-        <span>{item.count}</span>
-        <button onClick={increase}>+</button>
-    </div>
-  )
+
+    return (
+        <div>
+            <button onClick={decrease} >-</button>
+            <span>{item.count}</span>
+            <button onClick={increase}>+</button>
+        </div>
+    )
 }
 
 export default CountController

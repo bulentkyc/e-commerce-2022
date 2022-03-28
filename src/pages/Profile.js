@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 
 const Profile = () => {
 
+    const [avatarUrl, setAvatarUrl] = useState('https://www.kindpng.com/picc/m/22-223941_transparent-avatar-png-male-avatar-icon-transparent-png.png');
+    const [avatarFile, setAvatarFile] = useState();
     const [name, setName] = useState('');
     const [birthDate, setBirthDate] = useState('');
     const [street, setStreet] = useState('');
@@ -62,14 +64,21 @@ const Profile = () => {
     }
 
     const saveHandler = () => {
+        const formData = new FormData();
+        formData.append('avatarFile', avatarFile);
+        formData.append('name', name);
+        formData.append('birthDate', birthDate);
+        formData.append('street', street);
+        formData.append('city', city);
+        formData.append('postCode', postCode);
+
         const url = 'http://localhost:8080/profile/save';
         const options = {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
                 'x-auth-token': localStorage.getItem('token')
             },
-            body: JSON.stringify({name,birthDate,street,city,postCode})
+            body: formData
         }
 
         fetch(url, options)
@@ -79,6 +88,10 @@ const Profile = () => {
             });
     }
 
+    const fileHandler = (e) => {
+        setAvatarFile(e.target.files[0]);
+    }
+
     return (
         <div className='flex-col'>
 
@@ -86,6 +99,8 @@ const Profile = () => {
             :
             <section className='flex-col'>
                 <h1>Profile</h1>
+                <img className = 'avatar' src={avatarUrl} />
+                <input id='uploader' type='file' onChange = {fileHandler} />
                 <input type='text' name='name' placeholder='Name' value={name} onChange={inputHandler}/>
                 <input type='text' name='birthDate' placeholder='Birth date' value={birthDate} onChange={inputHandler}/>
                 <input type='text' name='street' placeholder='Street' value={street} onChange={inputHandler}/>
