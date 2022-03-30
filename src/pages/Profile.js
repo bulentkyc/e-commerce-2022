@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 
 const Profile = () => {
 
+    const [isProfileSaved, setIsProfileSaved] = useState(false);
     const [avatarUrl, setAvatarUrl] = useState('https://www.kindpng.com/picc/m/22-223941_transparent-avatar-png-male-avatar-icon-transparent-png.png');
     const [avatarFile, setAvatarFile] = useState();
     const [name, setName] = useState('');
@@ -24,7 +25,8 @@ const Profile = () => {
             })
                 .then(response => response.json())
                 .then(result => {
-                    console.log(result);
+                    console.log(123,result);
+                    setAvatarUrl(result.data.avatarUrl);
                     setName(result.data.name);
                     setBirthDate(result.data.birthDate);
                     setStreet(result.data.street);
@@ -32,7 +34,7 @@ const Profile = () => {
                     setPostCode(result.data.postCode);
             });
         }
-    }, []);
+    }, [isProfileSaved]);
     
     const inputHandler = (e) => {
         //console.log(e);
@@ -72,6 +74,8 @@ const Profile = () => {
         formData.append('city', city);
         formData.append('postCode', postCode);
 
+        console.log(formData);
+
         const url = 'http://localhost:8080/profile/save';
         const options = {
             method: 'POST',
@@ -84,7 +88,8 @@ const Profile = () => {
         fetch(url, options)
             .then(response => response.text())
             .then(result => {
-            alert(result);
+                setIsProfileSaved(true);
+                alert(result);
             });
     }
 
