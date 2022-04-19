@@ -6,8 +6,9 @@ import { Routes, Route} from 'react-router-dom';
 import Profile from './pages/Profile';
 import {useState, useEffect, useRef} from 'react';
 import Cart from './pages/Cart';
+import Contact from './pages/Contact';
 
-let counter = 0
+let counter = 0;
 
 function App() {
 
@@ -59,8 +60,8 @@ function App() {
   useEffect(() => {
     counter++;
     console.log(counter);
-  console.log('isTheFirstRun', isTheFirstRun)
-  console.log('isDone',isDone)
+    console.log('isTheFirstRun', isTheFirstRun)
+    console.log('isDone',isDone)
     /* alert('Updated') */
   })
   
@@ -109,6 +110,7 @@ function App() {
         <Route path='/login' element = {<Auth setEmail = {setEmail} />} />
         <Route path='/profile' element = {<Profile />} />
         <Route path='/cart' element = {<Cart cart = {cart} setCart = {setCart} />} />
+        <Route path='/contact' element = {<Contact/>} />
       </Routes>
     </div>
   );

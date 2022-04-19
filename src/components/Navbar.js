@@ -24,6 +24,9 @@ export const Navbar = (props) => {
                 <Link to={"/profile"}>Profile</Link>
             </li>
             :''}
+            <li>
+                <Link to={"/contact"}>Contact Us</Link>
+            </li>
             <section>
                 <li className='active'>
                     <Link to={"/cart"}>🛒 {props.cartCounter} </Link>
